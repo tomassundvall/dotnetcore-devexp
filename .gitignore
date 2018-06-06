@@ -3,4 +3,5 @@ src/*/obj
 src/*/bin
 src/*/out
 src/*/tmp
+*.db
 .vs/
