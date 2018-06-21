@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TSundvall.DotnetCoreDevExp.DependencyInjection.Service;
 
 namespace TSundvall.DotnetCoreDevExp.DependencyInjection
 {
@@ -24,6 +25,10 @@ namespace TSundvall.DotnetCoreDevExp.DependencyInjection
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddTransient<IBikeService, BikeService>();
+            services.AddScoped<ICarService, CarService>();
+            services.AddSingleton<ITrainService, TrainService>();
         }
 
 
