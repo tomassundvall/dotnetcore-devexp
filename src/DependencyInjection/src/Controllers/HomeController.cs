@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace TSundvall.DotnetCoreDevExp.DependencyInjection
 {
     [Route("[controller]")]

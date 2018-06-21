@@ -1,4 +1,9 @@
-﻿namespace TSundvall.DotnetCoreDevExp.DependencyInjection
+﻿using System.Net;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Serilog;
+
+namespace TSundvall.DotnetCoreDevExp.DependencyInjection
 {
     public class Program
     {
