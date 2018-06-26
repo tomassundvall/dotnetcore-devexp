@@ -22,6 +22,8 @@ namespace TSundvall.DotnetCoreDevExp.LogWrapper
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>));
         }
 
 

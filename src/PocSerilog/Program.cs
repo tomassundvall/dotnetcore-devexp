@@ -14,6 +14,7 @@ namespace TSundvall.DotnetCoreDevExp.PocSerilog
             .CreateLogger();
 
             Log.Information("Logging an item number {ItemNumber}", 250);
+            Log.Information($"Loggin an item number {350}");
 
             Log.CloseAndFlush();
         }

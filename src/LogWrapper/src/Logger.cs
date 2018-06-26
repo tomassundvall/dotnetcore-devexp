@@ -1,72 +1,35 @@
 using System;
+using Microsoft.Extensions.Logging;
 
 namespace TSundvall.DotnetCoreDevExp.LogWrapper
 {
-    public interface ILogger
+    public interface ILoggerAdapter<T>
     {
-        void Log(LogEntry logEntry);
+        void LogDebug(string message);
+        void LogDebug(string message, params object[] args);
     }
 
 
-    public enum LoggingEventType { Debug, Information, Warning, Error, Fatal };
-
-
-    public class LogEntry
+    public class LoggerAdapter<T> : ILoggerAdapter<T>
     {
-        public readonly LoggingEventType Severity;
-        public readonly string Message;
-        public readonly Exception Exception;
+        private readonly ILogger<T> _log;
 
 
-        public LogEntry(
-            LoggingEventType severity,
-            string message,
-            Exception exception = null)
+        public LoggerAdapter(ILogger<T> log)
         {
-            if (message == null) throw new ArgumentNullException("Log message null");
-            if (message == string.Empty) throw new ArgumentException("Log message empty");
-
-            this.Severity = severity;
-            this.Message = message;
-            this.Exception = exception; 
-        }
-    }
-
-
-    public static class LoggerExcensions
-    {
-        public static void Log(
-            this ILogger log,
-            LoggingEventType severity,
-            string message)
-        {
-            log.Log(new LogEntry(severity, message, null));
+            _log = log;
         }
 
 
-        public static void Debug(
-            this ILogger log,
-            string message)
+        public void LogDebug(string message)
         {
-            log.Log(new LogEntry(LoggingEventType.Debug, message, null));
-        }
-    }
-
-
-    public class SerilogAdapter : ILogger
-    {
-        private readonly Serilog.ILogger _serilogAdapter;
-
-
-        public SerilogAdapter(Serilog.ILogger serilogAdapter)
-        {
-            _serilogAdapter = serilogAdapter;
+            _log.LogDebug(message);
         }
 
 
-        public void Log(LogEntry logEntry)
+        public void LogDebug(string message, params object[] args)
         {
-            // if (logEntry.Severity == LoggingEventType.Debug) _serilogAdapter.Debug();
+            _log.LogDebug(message, args);
         }
     }
 }
