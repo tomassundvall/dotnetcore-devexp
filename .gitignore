@@ -5,3 +5,4 @@ src/*/out
 src/*/tmp
 *.db
 .vs/
+*.clef
